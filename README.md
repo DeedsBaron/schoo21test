@@ -39,7 +39,35 @@
 
 **Псевдо код**
  ```
-var add2 = function(number) {
-  return number + 2;
+func (str) {
+    if (строка содержит '|') {
+        add to map
+        return
+    }
+    substr = подстрока на основе регулярного выражения
+    mas = split(substr, '|')
+    for mas {
+        newstr = заменить в исходной строке substr на mas[i]
+        func(newstr)
+    }
 }
+```
+
+**Задача №1**
+
+Дана таблица **Staff (id int, salary int)**.  Id – primary key
+Напишите запрос, который возвращает вторую по величине зарплату 
+(после самой высокой). Если таковой нет, то запрос должен 
+возвращать null.
+
+**Алгоритм**
+
+1.Создать вложенный запрос, который будет выводить вторую по величине зарплату.<br />
+2.Создать основной запрос, который проверяет первый на null.
+```
+SELECT IFNULL( (SELECT DISTINCT salary
+                FROM Staff
+                ORDER BY salary DESC
+                LIMIT 1,1), null) as SecSalary
+FROM Staff
 ```
